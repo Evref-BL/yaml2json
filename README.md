@@ -20,9 +20,9 @@ y2j := Yaml2Json new.
 aString := 'path/to/pubspec.yaml' asFileLocator contents. 
 
 "specfic method to handle the yaml tipically found in pubspec.yaml of a flutter project"
-y2j convertPubSpecYamlToJson: aString.
+y2j convertPubSpecYamlToJson: aString. "^ JsonContent as a String"
 
 "specfic method to handle the yaml tipically found in pubspec.lock of a flutter project (no syntax differences with yaml, but the file content is easier to parser). "
-y2j convertPubSpecLockToJson: aString.
+y2j convertPubSpecLockToJson: aString. "^ JsonContent as a String"
 ```
 
