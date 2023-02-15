@@ -197,6 +197,14 @@ Yaml2Json >> convertPubSpecYamlToJson: aString [
 ]
 
 { #category : #removing }
+Yaml2Json >> hasComment: aString [
+
+	"take one line of yaml and remove its eventual comments"
+
+	^ (('.*#.*' asRegex matches: aString) and: [ ('.*".*#.*".*' asRegex matches: aString) not ] )
+]
+
+{ #category : #removing }
 Yaml2Json >> refactoreMultiline: aString [
 
 	"in yaml, transform a : >- \n b to :: a : b"
@@ -239,10 +247,9 @@ Yaml2Json >> refactoreTab: aString [
 Yaml2Json >> removeComment: aString [
 
 	"take one line of yaml and remove its eventual comments"
-
-
-	^ aString replaceAllRegex: '#.*' with: ''.
-
+	(self hasComment: aString )
+	ifTrue: [ ^ aString replaceAllRegex: '#.*' with: '' ]
+	ifFalse: [ ^ aString ].
 	
 ]
 
